@@ -1,2 +1,2 @@
 # algorithms
-Solutions in various programming languages to algorithm problems.
+Common data structure implementations and solutions to algorithm problems in various programming languages.
