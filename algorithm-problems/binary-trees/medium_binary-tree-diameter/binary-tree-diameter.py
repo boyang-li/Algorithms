@@ -9,6 +9,9 @@ class TreeInfo:
         self.diameter = diameter
         self.height = height
 
+# Average case: when the tree is balanced
+# O(n) time | O(h) space - where n is the number of nodes in the
+# binary tree and h is the height of the binary tree
 def binaryTreeDiameter(tree):
     return getTreeInfo(tree).diameter
 
