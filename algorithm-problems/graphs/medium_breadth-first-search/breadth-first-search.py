@@ -7,6 +7,11 @@ class Node:
         self.children.append(Node(name))
         return self
 
+    # Notes:
+    # In BFS, we iteratively explore all the child nodes of the current node
+    # (using a queue/FIFO data structure) before we go deeper.
+    #
+    # Complexity:
     # O(v + e) time | O(v) space
     # v = number of vertices; e = number of edges
     def bfs(self, array):
