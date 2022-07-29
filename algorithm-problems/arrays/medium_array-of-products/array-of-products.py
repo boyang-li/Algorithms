@@ -31,11 +31,24 @@ def arrayOfProducts(array):
 
   for i in range(len(array)):
     products[i] = leftProducts[i] * rightProducts[i]
-  
+
   return products
 
-# A clever optimal solution
-# O(n) time | O(n) space - where n is the length of the input array
+# Notes:
+# A clever optimal solution solves it by having a single forward loop to
+# calculate the running products of all the elements to the left up until the
+# current index, and then having a single backward loop to calculate the running
+# products of all the elements to the right up until the current index.
+#
+# Note that the running products calculated by the second backward loop are
+# accumelated products based on the running products calculated by the first
+# loop.
+#
+# By this setup, each elements in the result array would be the running product
+# of all the values to its left and right.
+#
+# Complexity:
+# O(n) time | O(n) space - where n is the length of the input array.
 def arrayOfProducts(array):
   products = [1 for _ in range(len(array))]
 
