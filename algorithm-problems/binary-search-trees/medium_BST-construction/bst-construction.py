@@ -1,9 +1,13 @@
-# A BST class for a Binary Search Tree. The class should support:
-#  - Inserting values with the insert method.
-#  - Removing values with the remove method; this method should only remove the first instance of a given value.
-#  - Searching for values with the contains method.
-# Note that you can't remove values from a single-node tree. In other words, calling the remove method on a
-# single-node tree should simply not do anything.
+# Notes:
+# We define a class for the Binary Search Tree data structure. The class should
+# support the following operations:
+#  - Insert: add new node for given value;
+#  - Remove: delete node with given value(it removes the first occurrence);
+#  - Search: return the node with given value;
+#  - Contains: returns boolean whether the BST has a node with the given value.
+#
+# Note that you can't remove node from a single-node tree. In other words,
+# calling the remove method on a single-node tree shouldn't do anything.
 class BST:
     def __init__(self, value):
         self.value = value
@@ -14,7 +18,7 @@ class BST:
     # Worst: O(n) time | O(n) space
     def insert(self, value):
         # if the value to be inserted is strictly smaller than the current node,
-        # it has to go to he left subtree; Otherwise, go to the right subtree.
+        # it goes to the left subtree; Otherwise, it goes to the right subtree.
         if value < self.value:
             # if there is no left subtree, add the node as the left child
             # node, otherwise, call insert on the left child node recursively.
@@ -29,7 +33,7 @@ class BST:
                 self.right.insert(value)
         return self
 
-    # Average: O(log(n)) time) | O(log(n)) space
+    # Average: O(log(n)) time | O(log(n)) space
     # Worst: O(n) time | O(n) space
     def contains(self, value):
         if value < self.value: # go to the left subtree
@@ -42,15 +46,18 @@ class BST:
                 return False
             else:
                 return self.right.contains(value)
-        else: # value = self.value and we have found it
+        else:
+            # value = self.value and we have found it
             return True
 
-    # Remove is the most tricky operation for BST construction.
-    # Essentially, whenever we have found the node to remove,
-    # there are 4 cases we would face: 1. both children nodes exist; or
-    # 2. the node itself is the root node; or 3. only one child node exists,
-    # and the node it self is a left child node; or 4. only one child node
-    # exists, and the node it self is a right child node;
+    # Remove is the most tricky operation for BST construction. When we have
+    # found the node to remove, there are FOUR cases we would face:
+    # 1. both child nodes exist;
+    # 2. the current is the root node;
+    # 3. only one of the child nodes exist, and the current node is a left child
+    #    node to its parent;
+    # 4. only one of the child nodes exist, and the current node is a right
+    #    child node to its parent;
     #
     # Average: O(log(n)) time) | O(log(n)) space
     # Worst: O(n) time | O(n) space
@@ -68,26 +75,29 @@ class BST:
                 self.value = self.right.getMinValue()
                 # recursive call to remove the min value in the right child
                 self.right.remove(self.value, self)
-            # case 2: target node is the root node
-            elif parent is None: # root node case
-                if self.left is not None: # left child exists, replace self with left child
+            # case 2: only one child exists, and target node is the root node
+            elif parent is None:
+                # left child exists, replace self with the left child node
+                if self.left is not None:
                     self.value = self.left.value
                     self.right = self.left.right
                     self.left = self.left.left
-                elif self.right is not None: # right child exists, replace self with right child
+                # right child exists, replace self with the right child node
+                elif self.right is not None:
                     self.value = self.right.value
                     self.left = self.right.left
                     self.right = self.right.right
-                else: # single-node tree, do nothing
+                else:
+                    # single-node tree, do nothing
                     pass
-            # case 3: the node to remove only has one child(could be either left or right),
-            # and the node itself is a left child to its parent
-            # finally set the node’s child as the left child to the parent
+            # case 3: only one child exists, and the target node itself is a
+            # left child to its parent. we simply replace the target node with
+            # its child node, in other words, the grand child becomes the child
+            # to the parent.
             elif parent.left == self:
                 parent.left = self.left if self.left is not None else self.right
-            # case 4: the node to remove only has one child(could be either left or right),
-            # and the node itself is a right child to its parent
-            # finally set the node’s child as the right child to the parent
+            # case 4: silimiar to case 3, only this time target is the right
+            # child to the parent.
             elif parent.right == self:
                 parent.right = self.left if self.left is not None else self.right
             return self
