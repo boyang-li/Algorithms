@@ -1,3 +1,22 @@
+# Notes:
+# For a given string of integers, we need to reurn an array of valid IP
+# addresses. We solve this problem by iterating through the integers, and try
+# to place dot at appropriate places so that an valid IP address can be formed.
+#
+# There are three dots we need to place, and there can be multiple combinations
+# of the different places we can place the dots.
+#
+# We will create a helper function to check whether a portion of the potential
+# IP address is valid. It should not have leading zeroes and it should between
+# 0 and 255.
+#
+# Each portion of an IP address can have at most three digits, so we construct
+# a triple nested loop with a 3-digit iteration in each layer of the inner loops,
+# and save all the valid IP addresses out of all possible dot placements.
+#
+# Complexity:
+# Realise the fact that the IP addresses can have at most 12 digits, so it runs
+# in constant time and space.
 # O(1) time | O(1) space
 def validIPAddresses(string):
     ipAddressesFound = []
@@ -26,8 +45,10 @@ def validIPAddresses(string):
     return ipAddressesFound
 
 def isValidPart(string):
-    stringAsInt = int(string) # removes leading 0s
+    # removes leading 0s by casting string to integer
+    stringAsInt = int(string)
+    # there is no negative sign so only check it for upper bound
     if stringAsInt > 255:
         return False
-
-    return len(string) == len(str(stringAsInt)) # check for leading 0s
+    # if there is leading zero then it is invalid
+    return len(string) == len(str(stringAsInt))
