@@ -47,7 +47,7 @@ class MinHeap:
                 idxToSwap = childOneIdx
             # swap the current node with the child node if the child node is
             # strictly smaller, then increment the indices of current node and
-            # first child node for loop the continue. Otherwise, we are done.
+            # first child node for loop to continue. Otherwise, we are done.
             if heap[idxToSwap] < heap[currIdx]:
                 self.swap(currIdx, idxToSwap, heap)
                 currIdx = idxToSwap
