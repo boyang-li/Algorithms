@@ -1,6 +1,7 @@
 # LeetCode 347. Top K Frequent Elements
 from collections import heapq, Counter
-from random import random
+import random
+from typing import List
 
 class Solution:
     # Approach 2: Quickselect (Hoare's selection algorithm)
