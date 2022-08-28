@@ -7,6 +7,8 @@
 # Complexity:
 # The algorithm consists of a single loop of size n/2
 # O(n) time | O(n) space - where n is the length of the result array
+from typing import List
+
 def sumZero(n: int) -> List[int]:
     m = n // 2
 

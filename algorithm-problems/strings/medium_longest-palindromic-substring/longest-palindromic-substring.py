@@ -36,4 +36,6 @@ def getLongestPalindromeFrom(string, leftIdx, rightIdx):
             break
         leftIdx -= 1
         rightIdx += 1
+    # the real right index would be (rightIdx - 1), here we are dealing with
+    # the string slicing exclusive ending index issue by not subtracting 1.
     return [leftIdx + 1, rightIdx]
