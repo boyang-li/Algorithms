@@ -1,11 +1,13 @@
 # LeetCode 973. K Closest Points to Origin
+#
+# Complexity:
+# Average case: O(n) time | O(n) space
+# Worst case: O(n^2) time | O(n) space
+
 from math import sqrt
 from typing import List
 import random
 
-# Complexity:
-# Average case: O(n) time | O(n) space
-# Worst case: O(n^2) time | O(n) space
 def kClosest(points: List[List[int]], k: int) -> List[List[int]]:
     distances = {}
     pointIndexes = [i for i in range(len(points))]
